@@ -15,11 +15,13 @@ const Layout: VFC<Props> = (props) => {
         <title>{title}</title>
       </Head>
       <header>
-        <nav className="bg-blue-900 w-screen">
-          <div className="flex items-center pl-8 h-14">
+        <nav className="bg-gray-900 w-screen">
+          <div className="flex items-center pl-8 h-16">
             <div className="flex space-x-4">
               <Link href="/">
-                <a className="text-gray-100 hover:bg-blue-700 px-3 py-2 rounded">My 9 Discs</a>
+                <a className="text-gray-100 hover:bg-gray-700 px-3 py-2 rounded text-base">
+                  My 9 Discs
+                </a>
               </Link>
             </div>
           </div>
