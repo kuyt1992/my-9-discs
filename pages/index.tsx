@@ -1,6 +1,6 @@
 import { VFC } from 'react'
-import Layout from '../component/Layout'
-import SelectAlbums from '../component/SelectAlbums'
+import Layout from '../components/Layout'
+import SelectAlbums from '../components/SelectAlbums'
 
 const Home: VFC = () => {
   return (
