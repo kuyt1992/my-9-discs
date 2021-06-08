@@ -28,6 +28,7 @@ export const useSearchAlbums = () => {
           id: album.id,
           name: album.name,
           images: album?.images,
+          artists: album.artists,
           release_date: album.release_date,
           album_group: album.album_group,
           album_type: album.album_type,
