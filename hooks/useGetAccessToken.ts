@@ -4,15 +4,12 @@ import { useRecoilState } from 'recoil'
 
 import { accessTokenState } from '../store/accessTokenState'
 
-// const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
-// const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
-// const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+const CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID
+const CLIENT_SECRET = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
+const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`
 
 export const useGetAccesToken = (): { accessToken: string } => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
-  const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID
-  const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
-  const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`
 
   useEffect(() => {
     axios(TOKEN_ENDPOINT, {
