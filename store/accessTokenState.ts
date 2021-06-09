@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
 export const accessTokenState = atom({
-  key: 'accessTokenState',
+  key: 'accessToken',
   default: '',
 })
