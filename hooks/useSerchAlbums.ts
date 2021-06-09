@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { accessTokenState } from '../store/accessTokenState'
 import { Album } from '../types/Album'
@@ -11,15 +11,17 @@ export const useSearchAlbums = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  const searchAlbums = useCallback(async (searchName: string) => {
+  const searchAlbums = async (searchName: string) => {
     setLoading(true)
     setError(false)
 
     await axios
       .get<SearchAlbumResponse>(
-        `https://api.spotify.com/v1/search?q=${searchName}&type=album&market=JP&limit=30`,
+        `https://api.spotify.com/v1/search?q=${searchName}&type=album&market=JP&limit=20`,
         {
-          headers: { Authorization: 'Bearer ' + accessToken },
+          headers: {
+            Authorization: 'Bearer ' + accessToken,
+          },
           data: {},
         },
       )
@@ -44,6 +46,6 @@ export const useSearchAlbums = () => {
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }
   return { searchAlbums, albumDatas, loading, error }
 }
