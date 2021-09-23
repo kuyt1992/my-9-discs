@@ -4,7 +4,7 @@ import SelectAlbums from '../components/SelectAlbums'
 
 const Home: VFC = () => {
   return (
-    <Layout title="Home">
+    <Layout title="My-9-Discs">
       <SelectAlbums />
     </Layout>
   )
