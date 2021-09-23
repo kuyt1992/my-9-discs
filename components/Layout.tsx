@@ -9,7 +9,7 @@ type Props = {
   title: string
 }
 
-const Layout: VFC<Props> = (props) => {
+export const Layout: VFC<Props> = (props) => {
   const { children, title } = props
 
   return (
@@ -23,5 +23,3 @@ const Layout: VFC<Props> = (props) => {
     </div>
   )
 }
-
-export default Layout
