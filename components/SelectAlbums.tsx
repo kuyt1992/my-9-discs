@@ -1,4 +1,6 @@
 import { memo, useEffect, useRef, useState, VFC } from 'react'
+import Link from 'next/link'
+import { useRecoilState } from 'recoil'
 
 import { TextField } from './atoms/TextField'
 import { ErrorMessage } from './atoms/ErrorMessage'
@@ -7,11 +9,13 @@ import { SelectedAlbumsCard } from './templates/Albums/SelectedAlbumsCard'
 
 import { useSearchAlbums } from '../hooks/useSerchAlbums'
 import { Album } from '../types/Album'
+import { selectedAlbumsState } from '../store/selectedAlbumsState'
 
 export const SelectAlbums: VFC = memo(() => {
   const { searchAlbums, albumDatas, loading, error } = useSearchAlbums()
   const [searchName, setSearchName] = useState('')
-  const [selectedAlbums, setselectedAlbums] = useState<Array<Album | null>>([])
+  const [selectedAlbums, setselectedAlbums] =
+    useRecoilState<Array<Album | null>>(selectedAlbumsState)
   const isFirstRender = useRef(false)
 
   useEffect(() => {
@@ -47,6 +51,9 @@ export const SelectAlbums: VFC = memo(() => {
           onChange={(e) => setSearchName(e.target.value)}
         />
       </div>
+      <Link href="/selected-albums">
+        <a>選択を確定する</a>
+      </Link>
       {error ? (
         <ErrorMessage message="データの取得に失敗しました" />
       ) : (
