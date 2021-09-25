@@ -1,4 +1,5 @@
 import { VFC } from 'react'
+import Image from 'next/image'
 
 import { Album } from '../../../types/Album'
 
@@ -17,10 +18,12 @@ export const AlbumCard: VFC<Props> = (props) => {
   return (
     <div key={album.id} className="bg-gray-800 shadow-lg p-3 rounded-sm">
       <div className="group relative">
-        <img
-          className="w-full md:w-72 block rounded"
+        <Image
+          className="rounded"
           src={album.images?.[0].url || ''}
           alt={album.name}
+          width={300}
+          height={300}
         />
         <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
           <button
