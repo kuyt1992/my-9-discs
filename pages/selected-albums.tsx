@@ -1,6 +1,7 @@
 import { VFC } from 'react'
 import { useRecoilValue } from 'recoil'
 import { Layout } from '../components/Layout'
+import { ShareButton } from '../components/templates/Albums/ShareButton'
 import { selectedAlbumsState } from '../store/selectedAlbumsState'
 
 const SelectedAlbums: VFC = () => {
@@ -32,6 +33,12 @@ const SelectedAlbums: VFC = () => {
               ・{album.name} / {album.artists[0].name} ({getReleaseYear(album.release_date)})
             </p>
           ))}
+        </div>
+        <div className="mt-4">
+          <ShareButton
+            hashtags={['私を構成する9枚', 'my9discs']}
+            url="http://localhost:3000/selected-albums"
+          ></ShareButton>
         </div>
       </div>
     </Layout>
