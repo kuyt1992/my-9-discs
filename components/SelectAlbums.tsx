@@ -39,6 +39,12 @@ export const SelectAlbums: VFC = memo(() => {
     // TODO: Validation定義(アルバム選択は9枚まで)
   }
 
+  const removeAlbum = (index: number) => {
+    const newSelectedAlbums = [...selectedAlbums]
+    newSelectedAlbums.splice(index, 1)
+    setselectedAlbums(newSelectedAlbums)
+  }
+
   return (
     <>
       <div className="absolute top-28 text-gray-600">
@@ -64,7 +70,9 @@ export const SelectAlbums: VFC = memo(() => {
             ))}
           </div>
           {/* 選択されたアルバムを描画 */}
-          {selectedAlbums && <SelectedAlbumsCard selectedAlbums={selectedAlbums} />}
+          {selectedAlbums && (
+            <SelectedAlbumsCard selectedAlbums={selectedAlbums} handleRemove={removeAlbum} />
+          )}
         </>
       )}
     </>
