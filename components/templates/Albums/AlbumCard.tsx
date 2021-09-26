@@ -11,10 +11,6 @@ type Props = {
 export const AlbumCard: VFC<Props> = (props) => {
   const { album, onClick } = props
 
-  const getReleaseYear = (release_date: string) => {
-    return new Date(release_date).getFullYear()
-  }
-
   return (
     <div key={album.id} className="bg-gray-800 shadow-lg p-3 rounded-sm">
       <div className="group relative">
@@ -72,7 +68,7 @@ export const AlbumCard: VFC<Props> = (props) => {
       <div className="p-5">
         <h3 className="text-white">{album.name}</h3>
         <p className="text-gray-400">{album.artists[0].name}</p>
-        <p className="text-gray-400">({getReleaseYear(album.release_date)})</p>
+        <p className="text-gray-400">({album.release_year})</p>
       </div>
     </div>
   )

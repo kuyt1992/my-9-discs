@@ -10,10 +10,6 @@ const SelectedAlbums: VFC = () => {
   // TODO: 型anyを修正する
   const selectedAlbums = useRecoilValue(selectedAlbumsState)
 
-  const getReleaseYear = (release_date: string) => {
-    return new Date(release_date).getFullYear()
-  }
-
   return (
     <Layout title="My-9-Discs">
       <h1 className="mt-6">あなたが選択したアルバム</h1>
@@ -33,7 +29,7 @@ const SelectedAlbums: VFC = () => {
         <div className="mt-6">
           {selectedAlbums.map((album) => (
             <p className="text-sm" key={album.id}>
-              ・{album.name} / {album.artists[0].name} ({getReleaseYear(album.release_date)})
+              ・{album.name} / {album.artists[0].name} ({album.release_year})
             </p>
           ))}
         </div>

@@ -25,4 +25,5 @@ export type Album = {
   album_type: string
   href: string
   total_tracks: number
+  release_year: string //追加
 }

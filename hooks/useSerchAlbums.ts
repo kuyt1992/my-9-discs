@@ -11,6 +11,10 @@ export const useSearchAlbums = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
+  const convertReleaseYear = (release_date: string) => {
+    return new Date(release_date).getFullYear().toString()
+  }
+
   const searchAlbums = async (searchName: string) => {
     setLoading(true)
     setError(false)
@@ -32,6 +36,7 @@ export const useSearchAlbums = () => {
           images: album?.images,
           artists: album.artists,
           release_date: album.release_date,
+          release_year: convertReleaseYear(album.release_date),
           album_group: album.album_group,
           album_type: album.album_type,
           href: album.href,
