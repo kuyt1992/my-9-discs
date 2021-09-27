@@ -1,5 +1,4 @@
 import { memo, useEffect, useRef, useState, VFC } from 'react'
-import Link from 'next/link'
 import { useRecoilState } from 'recoil'
 
 import { TextField } from './atoms/TextField'
@@ -57,9 +56,6 @@ export const SelectAlbums: VFC = memo(() => {
           onChange={(e) => setSearchName(e.target.value)}
         />
       </div>
-      <Link href="/selected-albums">
-        <a>選択を確定する</a>
-      </Link>
       {error ? (
         <ErrorMessage message="データの取得に失敗しました" />
       ) : (
@@ -70,9 +66,9 @@ export const SelectAlbums: VFC = memo(() => {
             ))}
           </div>
           {/* 選択されたアルバムを描画 */}
-          {selectedAlbums && (
+          {selectedAlbums.length ? (
             <SelectedAlbumsCard selectedAlbums={selectedAlbums} handleRemove={removeAlbum} />
-          )}
+          ) : null}
         </>
       )}
     </>
