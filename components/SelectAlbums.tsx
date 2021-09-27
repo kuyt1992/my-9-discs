@@ -34,8 +34,9 @@ export const SelectAlbums: VFC = memo(() => {
   }, [searchName])
 
   const onSelectAlbum = (album: Album) => {
-    setselectedAlbums([...selectedAlbums, album])
-    // TODO: Validation定義(アルバム選択は9枚まで)
+    if (selectedAlbums.length < 9) {
+      setselectedAlbums([...selectedAlbums, album])
+    }
   }
 
   const removeAlbum = (index: number) => {
