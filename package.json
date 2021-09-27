@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.1",
     "@types/recoil": "^0.0.9",
     "autoprefixer": "^10.2.6",
     "axios": "^0.21.1",
