@@ -1,6 +1,10 @@
 import { VFC, useState, Fragment } from 'react'
 import Image from 'next/image'
+import axios from 'axios'
 import { Dialog, Transition } from '@headlessui/react'
+import html2canvas from 'html2canvas'
+import dayjs from 'dayjs'
+
 import { Album } from '../../types/Album'
 
 type Props = {
@@ -17,6 +21,20 @@ export const Modal: VFC<Props> = (props) => {
 
   const closeModal = () => {
     setIsOpen(false)
+  }
+
+  const downloadImage = () => {
+    html2canvas(document.getElementById('9discs')).then((canvas) => {
+      const downloadEle = document.createElement('a')
+      downloadEle.href = canvas.toDataURL('image/jpg')
+      const now = dayjs().format('YYYYMMDD')
+      downloadEle.download = `my9discs_${now}.jpg`
+      downloadEle.click()
+    })
+  }
+
+  const postTweet = async () => {
+    await axios.get('/api/tweets')
   }
 
   return (
@@ -57,9 +75,9 @@ export const Modal: VFC<Props> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-50 shadow-xl rounded-2xl">
                 <Dialog.Title as="h2" className="text-lg font-semibold leading-6 text-gray-800">
-                  あなたを構成する9枚
+                  - あなたを構成する9枚 -
                 </Dialog.Title>
                 {/* <div className="mt-2">
                   <p className="text-sm text-gray-500">
@@ -67,7 +85,7 @@ export const Modal: VFC<Props> = (props) => {
                     of the details of your order.
                   </p>
                 </div> */}
-                <div className="grid grid-cols-3 gap-0 mt-4">
+                <div id="9discs" className="grid grid-cols-3 gap-0 mt-4">
                   {selectedAlbums.map((album) => (
                     <Image
                       key={album.id}
@@ -94,6 +112,20 @@ export const Modal: VFC<Props> = (props) => {
                     onClick={closeModal}
                   >
                     閉じる
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={downloadImage}
+                  >
+                    画像を保存する
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={postTweet}
+                  >
+                    画像POST
                   </button>
                 </div>
               </div>
